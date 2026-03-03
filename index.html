@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="generator" content="none" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>S&amp;P Personal Finance</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e07b54'/><path d='M5 24 L10 15 L16 19 L22 9 L27 13' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
@@ -19,7 +20,16 @@
 </head>
 <body>
 <div id="root"></div>
-<script type="text/babel">
+<div id="snp-err" style="display:none;position:fixed;inset:0;background:#fff;z-index:9999;display:none;padding:40px;font-family:sans-serif"><div style="max-width:600px;margin:40px auto;background:#fff1f2;border:1px solid #fca5a5;border-radius:12px;padding:28px"><div style="color:#dc2626;font-size:18px;font-weight:700;margin-bottom:12px">Failed to load</div><div id="snp-err-msg" style="color:#7f1d1d;font-size:13px;font-family:monospace"></div></div></div>
+<script>
+window.addEventListener("error", function(e){
+  var el = document.getElementById("snp-err");
+  if(el){ el.style.display="block"; }
+  var msg = document.getElementById("snp-err-msg");
+  if(msg){ msg.textContent = e.message + " (" + e.filename + " line " + e.lineno + ")"; }
+});
+</script>
+<script type="text/babel" data-presets="react">
 const { useState, useEffect, useMemo, useRef } = React;
 const { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList } = Recharts;
 
